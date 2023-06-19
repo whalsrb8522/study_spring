@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,8 @@ public class UserController {
 	private UserService usvc;
 	@Inject
 	private UserDAO udao;
+	@Inject
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	@PostMapping("signin")
 	public String postSignIn(RedirectAttributes rattr, UserVO uvo, HttpSession ses)  {
@@ -66,10 +69,6 @@ public class UserController {
 		
 		int isOk = usvc.addUser(uvo);
 		
-		if (isOk > 0) {
-			postSignIn(rattr, uvo, ses);
-		}
-		
 		return "redirect:/";
 	}
 	
@@ -89,7 +88,7 @@ public class UserController {
 	public void getModify(Model m, HttpSession ses) {
 		log.info("getModify() > uvo : " + (UserVO) ses.getAttribute("ses"));
 
-		UserVO resultUvo = usvc.getUser((UserVO) ses.getAttribute("ses"));
+		UserVO resultUvo = udao.selectUser((UserVO) ses.getAttribute("ses"));
 		
 		m.addAttribute("uvo", resultUvo);
 	}
@@ -116,10 +115,10 @@ public class UserController {
 		log.info("postModifyCheck()");
 		log.info("postModifyCheck() > uvo : " + uvo.toString());
 
-		String pw = udao.selectUserPw(uvo);
-		log.info("postModifyCheck() > pw : " + pw);
+		UserVO resultUvo = udao.selectUser(uvo);
+		log.info("postModifyCheck() > pw : " + resultUvo.getPw());
 		
-		return pw.equals(uvo.getPw()) ?
+		return passwordEncoder.matches(uvo.getPw(), resultUvo.getPw()) ?
 				new ResponseEntity<String>("1", HttpStatus.OK) : 
 				new ResponseEntity<String>("0", HttpStatus.OK);
 	}

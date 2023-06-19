@@ -9,7 +9,7 @@
 	</insert>
 	
 	<select id="selectUser" resultType="com.myweb.www.domain.UserVO">
-		SELECT * FROM user WHERE id = #{id} AND pw = #{pw} AND isDel = 0
+		SELECT * FROM user WHERE id = #{id} AND isDel = 0
 	</select>
 	
 	<select id="selectCountUser" resultType="int">
@@ -20,10 +20,6 @@
 		UPDATE user SET name = #{name}, email = #{email}, home = #{home}, age = #{age}
 		WHERE id = #{id}
 	</update>
-	
-	<select id="selectUserPw" resultType="String">
-		SELECT pw FROM user WHERE id = #{id} AND isDel = 0
-	</select>
 	
 	<update id="deleteUser">
 		UPDATE user SET isDel = 1 WHERE id = #{id}

@@ -3,11 +3,14 @@ package com.myweb.www.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.websocket.server.PathParam;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.myweb.www.domain.BoardVO;
 import com.myweb.www.domain.PagingVO;
@@ -39,10 +42,27 @@ public class BoardController {
 	}
 	
 	@GetMapping("register")
-	public String getRegister() {
+	public void getRegister() {
 		log.info("getRegister()");
+	}
+	
+	@PostMapping("register")
+	public String postRegister(BoardVO bvo) {
+		log.info("postRegister()");
+		log.info("postRegister() > bvo : " + bvo.toString());
 		
-		return "/board/register";
+		int isOk = bsvc.registerBoard(bvo);
+		
+		return "redirect:/board/list";
+	}
+	
+	@GetMapping("detail")
+	public void getDetail(Model m, @RequestParam("bno")int bno) {
+		log.info("getDetail()");
+		
+		BoardVO resultBvo = bsvc.getBoardDetail(bno);
+		
+		m.addAttribute("bvo", resultBvo);
 	}
 	
 }

@@ -11,4 +11,8 @@ public interface BoardService {
 
 	int getTotalCount(PagingVO pvo);
 
+	int registerBoard(BoardVO bvo);
+
+	BoardVO getBoardDetail(int bno);
+
 }

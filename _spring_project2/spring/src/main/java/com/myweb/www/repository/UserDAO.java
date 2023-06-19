@@ -15,8 +15,6 @@ public interface UserDAO {
 
 	int selectCountUser(UserVO uvo);
 
-	String selectUserPw(UserVO uvo);
-
 	int deleteUser(String id);
 
 }
