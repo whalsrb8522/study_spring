@@ -19,7 +19,9 @@
 		<form onsubmit="return checkModify()" action="/user/modify" 
 		name="form" method="post" id="innerContainer" class="border-gray">
 			<p>아이디</p>
-			<input type="text" name="id" placeholder="아이디 (* 필수)" value="${uvo.id }" readonly="readonly" class="input-text bg-gray">
+			<input type="text" name="id" placeholder="아이디 (* 필수)" value="${uvo.id }" readonly="readonly" id="inputId" class="input-text bg-gray">
+			<p>비밀번호 확인</p>
+			<input type="password" name="pw" placeholder="비밀번호 확인 (* 필수)" id="inputPw" class="input-text">
 			<p>이름</p>
 			<input type="text" name="name" placeholder="이름 (* 필수)" value="${uvo.name }" class="input-text">
 			<p>이메일</p>
@@ -28,11 +30,13 @@
 			<input type="text" name="home" placeholder="주소" value="${uvo.home }" class="input-text">
 			<p>나이</p>
 			<input type="text" name="age" placeholder="나이" value="${uvo.age	 }" class="input-text">
-			<button type="submit" class="button-green">회원수정</button>
+			<button type="submit" id="submitBtn" class="button-green">회원수정</button>
+			<a href="/user/remove?id=${uvo.id }">회원탈퇴</a>
 			<a href="/">홈으로</a>
 		</form>
 	</div>
 	
+	<script type="text/javascript" src="/resources/js/modify_check.js"></script>
 	<script type="text/javascript">
 		function checkModify() {
 			if (form.id.value == "") {

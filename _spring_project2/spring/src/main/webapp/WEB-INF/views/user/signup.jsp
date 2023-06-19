@@ -11,7 +11,7 @@
 	<div id="container">
 		<form onsubmit="return checkSignUp()" action="/user/signup" 
 		name="form" method="post" id="innerContainer" class="border-gray">
-			<input type="text" name="id" placeholder="아이디 (* 필수)" class="input-text">
+			<input type="text" name="id" placeholder="아이디 (* 필수)" id="inputId" class="input-text">
 			<input type="password" name="pw" placeholder="비밀번호 (* 필수)" class="input-text" >
 			<input type="text" name="name" placeholder="이름 (* 필수)" class="input-text" value="">
 			<input type="email" name="email" placeholder="이메일" class="input-text" value="">
@@ -22,7 +22,7 @@
 		</form>
 	</div>
 	
-	<script type="text/javascript" src="/resources/js/test.js"></script>
+	<script type="text/javascript" src="/resources/js/signup_check.js"></script>
 	<script type="text/javascript">
 		function checkSignUp() {
 			if (form.id.value == "") {

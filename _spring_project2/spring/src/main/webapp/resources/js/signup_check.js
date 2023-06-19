@@ -1,18 +1,18 @@
-document.getElementsByName("id")[0].addEventListener('change', e => {
-    console.log(e.target.value);
-
+document.getElementById("inputId").addEventListener('change', e => {
+    console.log("inputId");
+    
     const submitBtn = document.getElementById("submitBtn");
-    const id = e.target.value;
+    const id = document.getElementById("inputId").value;
 
     checkId(id).then(result => {
-        if (result == 0) {
-            submitBtn.innerHTML = '아이디 중복';
-            submitBtn.disabled = true;
-            submitBtn.style.backgroundColor = "#dc3545";
-        } else {
+        if (result > 0) {
             submitBtn.innerHTML = '회원가입';
             submitBtn.disabled = false;
             submitBtn.style.backgroundColor = "#03c75a";
+        } else if (result == 0) {
+            submitBtn.innerHTML = '아이디 중복';
+            submitBtn.disabled = true;
+            submitBtn.style.backgroundColor = "#dc3545";
         }
     });
 });

@@ -10,4 +10,6 @@ public interface UserService {
 
 	int modifyUser(UserVO uvo);
 
+	int removeUser(String id);
+
 }

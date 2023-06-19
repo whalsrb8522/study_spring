@@ -35,4 +35,9 @@ public class UserServiceImple implements UserService {
 		return udao.updateUser(uvo);
 	}
 
+	@Override
+	public int removeUser(String id) {
+		return udao.deleteUser(id);
+	}
+
 }
