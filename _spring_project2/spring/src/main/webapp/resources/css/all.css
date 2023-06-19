@@ -77,3 +77,11 @@ a {
 	font-weight: bold;
 	font-size: 16px;
 }
+
+.input-title p {
+    margin-bottom: 0 !important;
+    margin-right: auto;
+    font-size: 13px;
+    border-bottom: 1px solid gray;
+    padding-bottom: 5px;
+}

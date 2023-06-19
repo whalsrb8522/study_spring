@@ -19,20 +19,22 @@
 </head>
 <body>
 	<div id="container">
-		<form onsubmit="return registerCheck()" action="/board/register" method="post" name="form" id="innerContainer" class="border-gray input-title">
+		<form onsubmit="return modifyCheck()" action="/board/modify" method="post" name="form" id="innerContainer" class="border-gray input-title">
+			<input type="hidden" name="bno" value="${bvo.bno }">
 			<p>제목</p>
-			<input type="text" name="title" placeholder="제목" class="input-text">
+			<input type="text" name="title" value="${bvo.title }" class="input-text">
 			<p>작성자</p>
-			<input type="text" name="writer" placeholder="작성자" value="${ses.id }" readonly="readonly" class="input-text bg-gray">
+			<input type="text" name="writer" value="${bvo.writer}" readonly="readonly" class="input-text bg-gray">
 			<p>내용</p>
-			<textarea name="content" class="textarea-text"></textarea>
-			<button type="submit" class="button-green">글쓰기</button>
+			<textarea name="content" class="textarea-text border-gray">${bvo.content}</textarea>
+			<button type="submit" class="button-green">글수정</button>
+			<a href="/board/remove?bno=${bvo.bno }">글삭제</a>
 			<a href="javascript:location.href=document.referrer">뒤로가기</a>
 		</form>
 	</div>
 	
 	<script type="text/javascript">
-		function registerCheck() {
+		function modifyCheck() {
 			if (form.title.value == "") {
 				alert("제목을 입력해주세요.");
 				return false;

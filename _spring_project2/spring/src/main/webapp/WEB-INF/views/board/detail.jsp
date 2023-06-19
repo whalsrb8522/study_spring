@@ -8,15 +8,8 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/resources/css/all.css">
 <style type="text/css">
-	p {
-	    margin-bottom: 0 !important;
-	    margin-right: auto;
-	    font-size: 13px;
-	    border-bottom: 1px solid gray;
-	    padding-bottom: 5px;
-	}
-	
 	.input-text {
+		margin-top: 10px;
 		border: none;
 	}
 	
@@ -26,6 +19,7 @@
 	
 	.textarea-text {
 		margin-top: 10px;
+		resize: none;
 	}
 	
 	.textarea-text:focus {
@@ -35,7 +29,7 @@
 </head>
 <body>
 	<div id="container">
-		<div id="innerContainer" class="border-gray">
+		<div id="innerContainer" class="border-gray input-title">
 			<p>제목</p>
 			<input type="text" value="${bvo.title }" readonly="readonly" class="input-text">
 			<p>작성자</p>
@@ -43,7 +37,7 @@
 			<p>내용</p>
 			<textarea readonly="readonly" class="textarea-text border-gray">${bvo.content}</textarea>
 			<button onclick="location.href='/board/modify?bno=${bvo.bno}'" class="button-green">글수정</button>
-			<a href="javascript:location.href=document.referrer">뒤로가기</a>
+			<a href="/board/list">목록으로</a>
 		</div>
 	</div>
 </body>

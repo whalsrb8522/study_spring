@@ -15,4 +15,8 @@ public interface BoardDAO {
 
 	BoardVO selectBoardDetail(int bno);
 
+	int updateBoard(BoardVO bvo);
+
+	int deleteBoard(int bno);
+
 }

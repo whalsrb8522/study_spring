@@ -33,6 +33,7 @@
 	
 	table tbody td {
 		padding: 5px 0;
+		cursor: pointer;
 	}
 	
 	.selected {

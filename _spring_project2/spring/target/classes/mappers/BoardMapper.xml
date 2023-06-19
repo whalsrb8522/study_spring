@@ -26,4 +26,12 @@
 	<select id="selectBoardDetail" resultType="com.myweb.www.domain.BoardVO">
 		select * from board where bno = #{bno} and isDel = 'n';
 	</select>
+	
+	<update id="updateBoard">
+		update board set title = #{title}, content = #{content} where bno = #{bno}
+	</update>
+	
+	<update id="deleteBoard">
+		update board set isdel = 'y' where bno = #{bno}
+	</update>
 </mapper>

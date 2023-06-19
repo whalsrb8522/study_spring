@@ -66,8 +66,30 @@ public class BoardController {
 	}
 	
 	@GetMapping("modify")
-	public void getModify(@RequestParam("bno")int bno) {
+	public void getModify(Model m, @RequestParam("bno")int bno) {
 		log.info("getModify()");
+		
+		BoardVO resultBvo = bsvc.getBoardDetail(bno);
+		
+		m.addAttribute("bvo", resultBvo);		
 	}
 	
+	@PostMapping("modify")
+	public String postModify(BoardVO bvo) {
+		log.info("postModify()");
+		log.info("postModify() > bvo : " + bvo);
+		
+		int isOk = bsvc.modifyBoard(bvo);
+		
+		return "redirect:/board/detail?bno=" + bvo.getBno();
+	}
+	
+	@GetMapping("remove")
+	public String getRemove(@RequestParam("bno")int bno) {
+		log.info("getRemove()");
+		
+		int isOk = bsvc.removeBoard(bno);
+		
+		return "redirect:/board/list";
+	}
 }
