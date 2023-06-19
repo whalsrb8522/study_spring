@@ -42,7 +42,7 @@
 			<input type="text" value="${bvo.writer}" readonly="readonly" class="input-text">
 			<p>내용</p>
 			<textarea readonly="readonly" class="textarea-text border-gray">${bvo.content}</textarea>
-			<button onclick="javascript:locaton.href='/board/modify'" class="button-green">글수정</button>
+			<button onclick="location.href='/board/modify?bno=${bvo.bno}'" class="button-green">글수정</button>
 			<a href="javascript:location.href=document.referrer">뒤로가기</a>
 		</div>
 	</div>

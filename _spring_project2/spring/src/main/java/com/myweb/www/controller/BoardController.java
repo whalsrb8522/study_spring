@@ -65,4 +65,9 @@ public class BoardController {
 		m.addAttribute("bvo", resultBvo);
 	}
 	
+	@GetMapping("modify")
+	public void getModify(@RequestParam("bno")int bno) {
+		log.info("getModify()");
+	}
+	
 }
