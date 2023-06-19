@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myweb.www.repository.BoardDAO">
+	<select id="selectBoardList" resultType="com.myweb.www.domain.BoardVO">
+		<!-- select * from board where isDel = 'n'; -->
+		select a.bno, title, writer, reg_date, readcount from (
+			select bno from board where isDel = 'n' 
+			<include refid="search"></include>
+			order by bno desc
+			limit #{pageStart}, #{qty}
+		) a left join board b
+		on a.bno = b.bno
+	</select>
+	
+	<select id="selectBoard" resultType="com.myweb.www.domain.BoardVO">
+		select * from board where bno = #{bno}
+	</select>
+
+	<insert id="insertBoard">
+		insert into board(title, content, writer) 
+		values(#{title}, #{content}, #{writer})
+	</insert>
+	
+	<update id="updateBoard">
+		update board set title = #{title}, content = #{content} 
+		where bno = #{bno}
+	</update>
+	
+	<delete id="deleteBoard">
+		update board set isDel = 'y'
+		where bno = #{bno}	
+	</delete>
+	
+	<update id="updateReadcount">
+		update board set readcount = readcount + 1 where bno = #{bno}
+	</update>
+	
+	<select id="selectTotalCount" resultType="int">
+		select count(bno) from board where isDel = 'n'
+		<include refid="search"></include>
+	</select>
+	
+	<select id="selectBno" resultType="int">
+		select max(bno) from board;
+	</select>
+	
+	<sql id="search">
+  		<if test="type != null">
+  			<trim prefix="and (" suffix=")" prefixOverrides="or">
+  				<foreach collection="typeToArray">
+  					<trim prefix="or">
+  						<choose>
+  							<when test="type == 't'.toString()">
+  								title like concat('%', #{keyword}, '%')
+  							</when>
+  							<when test="type == 'w'.toString()">
+  								writer like concat('%', #{keyword}, '%')
+  							</when>
+  							<when test="type == 'c'.toString()">
+  								content like concat('%', #{keyword}, '%')
+  							</when>
+  						</choose>
+  					</trim>
+  				</foreach>
+  			</trim>
+  		</if>	
+  	</sql>
+</mapper>
