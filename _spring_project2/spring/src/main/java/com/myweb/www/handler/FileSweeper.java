@@ -21,13 +21,14 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @AllArgsConstructor
 public class FileSweeper {
-	private final String BASE_PATH = "C:\\_javaweb\\_java\\fileUpload\\";
+	private final String BASE_PATH = "E:\\Workspace\\Spring\\_myweb\\_java\\fileUpload\\";
 	
 	@Inject
 	private FileDAO fdao;
 	
 	// 초 분 시 일 월 요일 년도(생략가능)
-	@Scheduled(cron = "1 16 21 * * *")
+	// @Scheduled(cron = "1 16 21 * * *")
+	@Scheduled(cron = "0 * * * * *")
 	public void fileSweeper() throws Exception {
 		log.info(">>> FileSweeper Running Start : {}", LocalDateTime.now());
 		

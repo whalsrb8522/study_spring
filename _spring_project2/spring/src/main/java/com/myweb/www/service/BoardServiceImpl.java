@@ -10,6 +10,7 @@ import com.myweb.www.domain.BoardDTO;
 import com.myweb.www.domain.BoardVO;
 import com.myweb.www.domain.FileVO;
 import com.myweb.www.domain.PagingVO;
+import com.myweb.www.domain.UserVO;
 import com.myweb.www.repository.BoardDAO;
 import com.myweb.www.repository.FileDAO;
 
@@ -64,6 +65,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int removeBoard(int bno) {
+		fdao.deleteFileBno(bno);
 		return bdao.deleteBoard(bno);
 	}
 

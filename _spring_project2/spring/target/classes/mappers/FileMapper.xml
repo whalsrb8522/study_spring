@@ -16,6 +16,10 @@
 		delete from file where uuid = #{uuid}
 	</delete>
 	
+	<delete id="deleteFileBno">
+		delete from file where bno = #{bno}
+	</delete>
+	
 	<select id="selectAllFileList" resultType="com.myweb.www.domain.FileVO">
 		select * from file
 	</select>

@@ -5,6 +5,7 @@ import java.util.List;
 import com.myweb.www.domain.BoardDTO;
 import com.myweb.www.domain.BoardVO;
 import com.myweb.www.domain.PagingVO;
+import com.myweb.www.domain.UserVO;
 
 public interface BoardService {
 

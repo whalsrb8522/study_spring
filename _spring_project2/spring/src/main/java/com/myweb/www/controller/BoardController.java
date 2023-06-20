@@ -42,7 +42,9 @@ public class BoardController {
 	private BoardService bsvc;
 	@Inject
 	private FileHandler fhd;
-
+	@Inject
+	private UserDAO udao;
+	
 	@GetMapping("list")	
 	public void getList(Model m, PagingVO pvo) {
 		log.info("getList()");
@@ -115,11 +117,11 @@ public class BoardController {
 	public String getRemove(@RequestParam("bno")int bno) {
 		log.info("getRemove()");
 		
-		int isOk = bsvc.removeBoard(bno);
+		bsvc.removeBoard(bno);
 		
 		return "redirect:/board/list";
 	}
-	
+
 	@DeleteMapping(value = "/file/{uuid}", produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> removeFile(@PathVariable("uuid")String uuid) {
 		log.info("uuid : " + uuid);
