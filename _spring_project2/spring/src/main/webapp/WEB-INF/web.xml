@@ -26,13 +26,19 @@
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+		<multipart-config>
+			<location>E:\Workspace\Spring\_myweb\_java\fileUpload</location>
+			<max-file-size>20971520</max-file-size>
+			<max-rquest-size>41943040</max-rquest-size>
+			<file-size-threshold>20971520</file-size-threshold>
+		</multipart-config>
 	</servlet>
 		
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
+	
 	<filter>
 		<filter-name>encoding</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

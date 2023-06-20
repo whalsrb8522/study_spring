@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,6 +52,9 @@
 </style>
 </head>
 <body>
+	<c:set var="bvo" value="${bdto.bvo}" />
+	<c:set var="listFvo" value="${bdto.listFvo }" />
+
 	<div id="container">
 		<div id="innerContainer" class="border-gray input-title">
 			<p>제목</p>
@@ -59,6 +63,20 @@
 			<input type="text" value="${bvo.writer}" readonly="readonly" class="input-text border-none">
 			<p>내용</p>
 			<textarea readonly="readonly" class="textarea-text border-gray">${bvo.content}</textarea>
+			<p>첨부파일</p>
+			<ul>
+				<c:forEach var="fvo" items="${listFvo }">
+					<li>
+						<c:choose>
+							<c:when test="${fvo.file_type > 0 }">
+								<img src="/upload/${fn:replace(fvo.save_dir, '\\', '/') }/${fvo.uuid }_th_${fvo.file_name }">
+							</c:when>
+						</c:choose>
+						<br>
+						(${fvo.reg_date })
+					</li>
+				</c:forEach>
+			</ul>
 			<button onclick="location.href='/board/modify?bno=${bvo.bno}'" class="button-green">글수정</button>
 			<a href="/board/list">목록으로</a> <br>
 		</div>

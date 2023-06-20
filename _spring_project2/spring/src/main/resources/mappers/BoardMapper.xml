@@ -19,8 +19,8 @@
 	</select>
 	
 	<insert id="insertBoard">
-		insert into board(title, writer, content) 
-		values(#{title}, #{writer}, #{content})
+		insert into board(title, content, writer) 
+		values(#{title}, #{content}, #{writer})
 	</insert>
 	
 	<select id="selectBoardDetail" resultType="com.myweb.www.domain.BoardVO">
@@ -33,6 +33,14 @@
 	
 	<update id="deleteBoard">
 		update board set isdel = 'y' where bno = #{bno}
+	</update>
+	
+	<select id="selectBno" resultType="int">
+		select max(bno) from board;
+	</select>
+	
+	<update id="updateReadcount">
+		update board set readcount = readcount + 1 where bno = #{bno}
 	</update>
 	
 	<sql id="search">
