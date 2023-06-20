@@ -6,7 +6,7 @@
 	<select id="selectBoardList" resultType="com.myweb.www.domain.BoardVO">
 		select a.bno, title, writer, reg_date, readcount from (
 			select bno from board where isDel = 'n' 
-			<!-- <include refid="search"></include> -->
+			<include refid="search"></include>
 			order by bno desc
 			limit #{pageStart}, #{qty}
 		) a left join board b
@@ -15,7 +15,7 @@
 	
 	<select id="selectTotalCount" resultType="int">
 		select count(bno) from board where isDel = 'n'
-		<!-- <include refid="search"></include> -->
+		<include refid="search"></include>
 	</select>
 	
 	<insert id="insertBoard">
@@ -34,4 +34,26 @@
 	<update id="deleteBoard">
 		update board set isdel = 'y' where bno = #{bno}
 	</update>
+	
+	<sql id="search">
+  		<if test="type != null">
+  			<trim prefix="and (" suffix=")" prefixOverrides="or">
+  				<foreach collection="typeToArray">
+  					<trim prefix="or">
+  						<choose>
+  							<when test="type == 't'.toString()">
+  								title like concat('%', #{keyword}, '%')
+  							</when>
+  							<when test="type == 'w'.toString()">
+  								writer like concat('%', #{keyword}, '%')
+  							</when>
+  							<when test="type == 'c'.toString()">
+  								content like concat('%', #{keyword}, '%')
+  							</when>
+  						</choose>
+  					</trim>
+  				</foreach>
+  			</trim>
+  		</if>	
+  	</sql>
 </mapper>
