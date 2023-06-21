@@ -14,6 +14,10 @@ a {
 	color: black;
 }
 
+ul {
+	list-style-type: 
+}
+
 #container {
     position: absolute;
     left: 50%;
