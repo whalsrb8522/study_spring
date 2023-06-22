@@ -39,6 +39,7 @@
 
 - 기본 설정: pom.xml, web.xml, root-context.xml
 - DB 설정
+## spring_project1/2
 ```
 create database springtest;
 
@@ -99,6 +100,36 @@ alter table file add constraint fk_file_bno foreign key(bno) references board(bn
 	on delete cascade on update cascade;
 alter table board add constraint fk_fboard_writer foreign key(writer) references user(id)
 	on delete cascade on update cascade;
+```
+## spring_project3
+```
+create table member (
+email varchar(100) not null,
+pwd varchar(100) not null,
+nick_name varchar(100) not null,
+reg_at datetime default null,
+grade tinyint default 10,
+primary key (email)
+);
+
+create table board (
+bno bigint not null auto_increment,
+title varchar(200) not null,
+content text not null,
+writer varchar(100) not null,
+reg_at datetime default now(),
+mod_at datetime default now(),
+read_count int default 0,
+primary key (bno)
+);
+
+create table auth_member (
+email varchar(100) not null,
+auth varchar(50) not null
+);
+
+alter table auth_member add constraint fk_auth
+foreign key (email) references member(email);
 ```
 
 # [JAVA]
