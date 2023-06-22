@@ -39,7 +39,7 @@
 
 - 기본 설정: pom.xml, web.xml, root-context.xml
 - DB 설정
-## spring_project1/2
+### _spring_project1/2
 ```
 create database springtest;
 
@@ -101,7 +101,7 @@ alter table file add constraint fk_file_bno foreign key(bno) references board(bn
 alter table board add constraint fk_fboard_writer foreign key(writer) references user(id)
 	on delete cascade on update cascade;
 ```
-## spring_project3
+### _spring_project3
 ```
 create table member (
 email varchar(100) not null,

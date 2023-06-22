@@ -29,6 +29,10 @@ public class ServletConfiguration implements WebMvcConfigurer {
 		viewResolver.setViewClass(JstlView.class);
 		viewResolver.setPrefix("/WEB-INF/views/");
 		viewResolver.setSuffix(".jsp");
+		registry.viewResolver(viewResolver);
 	}
+	
+	// multipartResolver 설정
+	
 	
 }
