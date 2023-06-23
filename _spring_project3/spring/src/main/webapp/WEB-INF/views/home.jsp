@@ -13,6 +13,6 @@
 	
 	<P>  The time on the server is ${serverTime}. </P>
 	<a href="/board/register"><button type="button">글등록</button></a>
-	<a href="/board/list"><buton type="button">글목록</buton></a>
+	<a href="/board/list"><button type="button">글목록</button></a>
 </body>
 </html>
